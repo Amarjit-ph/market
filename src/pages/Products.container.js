@@ -29,8 +29,6 @@ const ProductsContainer = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-
-  console.log("Products :", products);
   return (
     <React.Fragment>
       <Header />
