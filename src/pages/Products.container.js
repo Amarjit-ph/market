@@ -6,9 +6,9 @@
  * Year 2022
  */
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../redux/actions/productsActions";
+import axios from "axios";
 import Header from '../components/Header.component';
 import Banner from "../components/Banner.component";
 import ProductList from "../components/ProductList.component";

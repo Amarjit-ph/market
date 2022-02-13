@@ -5,24 +5,41 @@
  * Created Date: Sunday, February 13th 2022, 1:54:20 am
  * Year 2022
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Card from './Card.component';
 import starRating from '../common/star-rating-helper';
+
 const ProductList = () => {
     const products = useSelector((state) => state.allProducts.products);
-
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        if (products[0]) {
+            setIsLoading(false);
+        }
+    }, [products]);
     return (
-
         <div class="container mx-auto px-6 md:px-48 pb-6">
             <div class="mt-6">
                 <h3 class="text-gray-600 text-3xl font-medium">All Categories</h3>
                 <span class="mt-3 text-md text-gray-500">2000+ Popular products based on sales.</span>
-                <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-                    {
-                        products.map((product) => {
+                {isLoading ?
+                    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                    </div>
+                    :
+                    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+                        {products.map((product) => {
                             return (
-                                < div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden p-2" >
+                                < div class="w-full max-w-md mx-auto rounded-md shadow-md overflow-hidden p-2" >
                                     <Link to={`/product/${product.id}`}>
                                         <div class="flex items-end justify-end h-56 w-full bg-cover" style={{ backgroundImage: `url(${product.image})` }} >
                                             {/* <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
@@ -39,13 +56,15 @@ const ProductList = () => {
                                         </div>
                                     </Link>
                                 </div>
-
                             );
                         })
-                    }
-                </div>
+                        }
+                    </div>
+                }
+
             </div >
         </div>
     );
 }
 export default ProductList;
+
