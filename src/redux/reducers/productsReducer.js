@@ -9,10 +9,8 @@ import { ActionTypes } from "../constants/action-types";
 const initialProductState = {
   products: [],
 };
-
 export const productsReducer = (state = initialProductState, { type, payload }) => {
   console.log(type);
-  //console.log("STATE PRODUCTS: ", state);
   switch (type) {
     case ActionTypes.SET_PRODUCTS:
       return { ...state, products: payload };
@@ -20,10 +18,8 @@ export const productsReducer = (state = initialProductState, { type, payload }) 
       return state;
   }
 };
-
 export const selectedProductsReducer = (state = {}, { type, payload }) => {
   console.log(type);
-  console.log("STATE SELECTED PRODUCTS: ", state);
   switch (type) {
     case ActionTypes.SELECTED_PRODUCT:
       return { ...state, ...payload };

@@ -14,13 +14,13 @@ import Banner from "../components/Banner.component";
 import ProductList from "../components/ProductList.component";
 import Search from "../components/Search.component";
 import Footer from "../components/Footer.component";
-
+import commonConstants from "../common/constants";
 const ProductsContainer = () => {
   const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
   const fetchProducts = async () => {
     const response = await axios
-      .get("https://fakestoreapi.com/products")
+      .get(commonConstants.ProductsURL)
       .catch((err) => {
         console.log("Err: ", err);
       });

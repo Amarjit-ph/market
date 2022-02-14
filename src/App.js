@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProductsContainer from "./pages/Products.container";
 import ProductDetailsContainer from "./pages/ProductDetails.container";
 import "./App.css";
-
 function App() {
   return (
     <div className="App">

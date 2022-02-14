@@ -12,7 +12,6 @@ export const addToCartAction = (product) => {
         payload: product,
     };
 };
-
 export const removeFromCartAction = (product) => {
     return {
         type: ActionTypes.REMOVE_FROM_CART,
@@ -24,3 +23,18 @@ export const clearCartAction = () => {
         type: ActionTypes.CLEAR_CART,
     };
 };
+
+export const openCartAction = () => {
+    return {
+        type: ActionTypes.OPEN_CART,
+    }
+}
+
+export const closeCartAction = () => {
+    return {
+        type: ActionTypes.CLOSE_CART,
+    }
+}
+
+
+
