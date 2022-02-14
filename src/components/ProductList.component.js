@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Card from './Card.component';
 import starRating from '../common/star-rating-helper';
-
 const ProductList = () => {
     const products = useSelector((state) => state.allProducts.products);
     const [isLoading, setIsLoading] = useState(true);
@@ -37,9 +36,9 @@ const ProductList = () => {
                     </div>
                     :
                     <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-                        {products.map((product) => {
+                        {products.map((product, i) => {
                             return (
-                                < div class="w-full max-w-md mx-auto rounded-md shadow-md overflow-hidden p-2" >
+                                < div class="w-full max-w-md mx-auto rounded-md shadow-md overflow-hidden p-2" key={i}>
                                     <Link to={`/product/${product.id}`}>
                                         <div class="flex items-end justify-end h-56 w-full bg-cover" style={{ backgroundImage: `url(${product.image})` }} >
                                             {/* <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
@@ -61,7 +60,6 @@ const ProductList = () => {
                         }
                     </div>
                 }
-
             </div >
         </div>
     );

@@ -6,14 +6,23 @@
  * Year 2022
  */
 import { ActionTypes } from "../constants/action-types";
-export const cartReducer = (state = [], { type, payload }) => {
+const initialCartState = {
+    cart: [],
+    isCartOpen: false,
+};
+export const cartReducer = (state = initialCartState, { type, payload }) => {
+    console.log(type);
     switch (type) {
         case ActionTypes.ADD_TO_CART:
-            return [...state, payload];
+            return { ...state, cart: [...state.cart, payload] };
         case ActionTypes.REMOVE_FROM_CART:
-            return [...state.cart.products.filter(element => element !== payload)];
+            return { ...state, cart: [...state.cart.filter(element => element !== payload)] };
         case ActionTypes.CLEAR_CART:
-            return [];
+            return { ...state, cart: [] };
+        case ActionTypes.OPEN_CART:
+            return { ...state, isCartOpen: true };
+        case ActionTypes.CLOSE_CART:
+            return { ...state, isCartOpen: false };
         default:
             return state;
     }

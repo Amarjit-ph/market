@@ -7,12 +7,19 @@
  */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Cart from "./Cart.component";
+import { openCartAction } from "../redux/actions/cartsAction";
 const Header = () => {
-  const cartItemsNumber = useSelector((state) => state.cart.length);
+  const dispatch = useDispatch();
+  const cartItemsNumber = useSelector((state) => state.cart.cart.length);
   const [hideNav, setHideNav] = useState(true);
   const toggleNav = () => {
     setHideNav(!hideNav);
+  }
+  const toggleCart = (status) => {
+    dispatch(openCartAction(status));
+
   }
   return (
     <header className="mt-1" >
@@ -33,8 +40,7 @@ const Header = () => {
           </Link>
 
           <div class="flex items-center justify-end w-full">
-            <button class="text-gray-600 focus:outline-none mr-2 sm:mx-0">
-
+            <button class="text-gray-600 focus:outline-none mr-2 sm:mx-0" onClick={toggleCart}>
               <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
               </svg>
@@ -43,7 +49,7 @@ const Header = () => {
               <span className="text-sm mr-1">{cartItemsNumber}</span>
               <span class="inline-block w-3 h-3 bg-red-600 rounded-full mr-3"></span>
             </>}
-            <div class="flex sm:hidden" onClick={toggleNav}>
+            <div class="flex sm:hidden" onClick={() => toggleNav(true)}>
               <button type="button" class="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500" aria-label="toggle menu">
                 <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
                   <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
@@ -79,6 +85,9 @@ const Header = () => {
               <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">About</a>
             </div>
           </nav>}
+
+        <Cart />
+
 
       </div >
     </header >

@@ -7,7 +7,7 @@
  */
 import React, { useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedProduct, removeSelectedProduct } from "../redux/actions/productsActions";
 import { addToCartAction } from "../redux/actions/cartsAction";
@@ -15,11 +15,13 @@ import Header from '../components/Header.component';
 import Footer from '../components/Footer.component';
 import starRating from '../common/star-rating-helper';
 
+
 const ProductDetailsContainer = () => {
-  const { productId } = useParams();
-  let product = useSelector((state) => state.product);
-  const { image, title, price, category, description } = product;
+  const history = useHistory();
   const dispatch = useDispatch();
+  let product = useSelector((state) => state.product);
+  const { productId } = useParams();
+  const { image, title, price, category, description } = product;
   const fetchProductDetail = async (id) => {
     const response = await axios
       .get(`https://fakestoreapi.com/products/${id}`)
@@ -31,7 +33,6 @@ const ProductDetailsContainer = () => {
   const addToCart = (product) => {
     dispatch(addToCartAction(product));
   }
-
   useEffect(() => {
     if (productId && productId !== "") fetchProductDetail(productId);
     return () => {
@@ -45,7 +46,6 @@ const ProductDetailsContainer = () => {
       {Object.keys(product).length === 0 ? (
         <div class="flex mt-96 sm:mt-72  justify-center w-full h-full">
           <div class="flex justify-center items-center space-x-1 text-sm text-gray-700">
-
             <svg fill='none' class="w-14 h-14 animate-spin" viewBox="0 0 32 32" xmlns='http://www.w3.org/2000/svg'>
               <path clip-rule='evenodd'
                 d='M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z'
@@ -64,7 +64,7 @@ const ProductDetailsContainer = () => {
               <div class="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
                 <h1 class="text-gray-700 uppercase text-2xl">{title}</h1>
                 <h2>
-                  <a className="ui teal tag label">₹{[(product.price * 75).toFixed(2)]}</a>
+                  <a className="">₹{[(product.price * 75).toFixed(2)]}</a>
                 </h2>
                 <p className="mt-4">{description}</p>
                 <div class="star mt-2">{product.rating === undefined ? <></> : starRating(product.rating.rate, product)}</div>
