@@ -42,6 +42,7 @@ React Redux is the official React UI bindings layer for Redux. It lets your Reac
 **Containers** are just like components without UI and Containers are concerned with how things work. It mainly talks to the redux store for getting and updating the data
 
 # References
+- A Beginners Guide to Understanding Redux - https://medium.com/zenofai/beginners-guide-to-understand-redux-6a5e93ce3f64
 - React Redux- https://react-redux.js.org/
 - React + Redux — Best Practices - https://medium.com/js-imaginea/best-practices-with-react-and-redux-application-1e94a6f214a0
 - React + Redux: Architecture Overview - https://medium.com/mofed/react-redux-architecture-overview-7b3e52004b6e
