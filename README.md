@@ -7,6 +7,15 @@
 <div><br/>
 <div align="left">
 
+# Now Powered by Redux Toolkit 
+
+This project has been upgraded to use **Redux Toolkit**, the official, modern way to write Redux logic. Redux Toolkit simplifies store setup, reduces boilerplate, and promotes best practices like `createSlice`, `configureStore`, and Immer-based state updates.
+
+> 🔄 No more verbose switch statements — state logic is now cleaner, safer, and more scalable.
+
+---
+
+
 # Redux
 Redux is an open-source JavaScript library used to manage application state. React uses Redux for building the user interface. It was first introduced by Dan Abramov and Andrew Clark in 2015.
 
