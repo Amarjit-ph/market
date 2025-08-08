@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import EmptyCart from './EmptyCart.component';
 import CartItemsList from './CartItemsList.component';
-import { closeCartAction } from '../redux/actions/cartsAction';
+import { closeCart } from '../features/cart/cartSlice';
+
 const Cart = () => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.cart);
     const isCartOpen = useSelector((state) => state.cart.isCartOpen);
     const closeCart = () => {
-        dispatch(closeCartAction());
+        dispatch(closeCart());
     }
     useEffect(() => {
         getCartStatusClass();

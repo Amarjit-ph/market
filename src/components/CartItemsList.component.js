@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { clearCartAction } from '../redux/actions/cartsAction';
+import { clearCart } from '../features/cart/cartSlice';
 const CartItemsList = ({ cartItems }) => {
     const dispatch = useDispatch();
     const clearCart = () => {
-        dispatch(clearCartAction());
+        dispatch(clearCart());
     }
     return (
         <React.Fragment>

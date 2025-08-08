@@ -7,7 +7,8 @@
  */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../redux/actions/productsActions";
+// import { setProducts } from "../redux/actions/productsActions";
+import {setProducts} from '../features/product/productSlice'
 import axios from "axios";
 import Header from '../components/Header.component';
 import Banner from "../components/Banner.component";

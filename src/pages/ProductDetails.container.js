@@ -9,8 +9,13 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedProduct, removeSelectedProduct } from "../redux/actions/productsActions";
-import { addToCartAction } from "../redux/actions/cartsAction";
+
+// import { selectedProduct, removeSelectedProduct } from "../redux/actions/productsActions";
+// import { addToCartAction } from "../redux/actions/cartsAction";
+
+import { addToCart } from "../features/cart/cartSlice";
+import { selectedProduct, removeSelectedProduct} from '../features/product/selectedProductSlice';
+
 import Header from '../components/Header.component';
 import Footer from '../components/Footer.component';
 import starRating from '../common/star-rating-helper';
@@ -30,9 +35,7 @@ const ProductDetailsContainer = () => {
       });
     dispatch(selectedProduct(response.data));
   };
-  const addToCart = (product) => {
-    dispatch(addToCartAction(product));
-  }
+
   useEffect(() => {
     if (productId && productId !== "") fetchProductDetail(productId);
     return () => {
@@ -72,7 +75,7 @@ const ProductDetailsContainer = () => {
                 <h1 class="text-grey-500 text-lg mt-3">Save Extra with No cost EMI</h1>
                 <h1 class="text-black-8000 mb-2 text-gl">Free Delivery by <b>Delhivery</b></h1>
 
-                <div class="flex items-center mt-6" onClick={() => { addToCart(product) }}>
+                <div class="flex items-center mt-6" onClick={() => { dispatch(addToCart(product)) }}>
                   <button class="px-12 py-2 bg-indigo-600 text-white text-md font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add to Cart</button>
                   <button class="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none">
                     <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
