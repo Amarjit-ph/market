@@ -9,7 +9,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Cart from "./Cart.component";
-import { openCartAction } from "../redux/actions/cartsAction";
+import { openCart } from "../features/cart/cartSlice";
+
 const Header = () => {
   const dispatch = useDispatch();
   const cartItemsNumber = useSelector((state) => state.cart.cart.length);
@@ -18,8 +19,7 @@ const Header = () => {
     setHideNav(!hideNav);
   }
   const toggleCart = (status) => {
-    dispatch(openCartAction(status));
-
+    dispatch(openCart(status));
   }
   return (
     <header className="mt-1" >
